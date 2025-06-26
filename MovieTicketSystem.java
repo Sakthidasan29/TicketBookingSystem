@@ -1,4 +1,4 @@
-// ✅ COMPLETE JAVA CODE FOR MOVIE TICKET SYSTEM WITH FULL DATABASE INTEGRATION
+//  COMPLETE JAVA CODE FOR MOVIE TICKET SYSTEM WITH FULL DATABASE INTEGRATION
 // Includes: UserModule, AdminModule, EventModule, BookingModule, SeatSelectionModule, NotificationModule, DBConnection
 package project;
 import java.sql.*;
@@ -24,7 +24,7 @@ class DBConnection {
 //NotificationModule.java
 class NotificationModule {
     void sendConfirmation(int userId) {
-        System.out.println("📩 Booking confirmation sent to User ID: " + userId);
+        System.out.println("Booking confirmation sent to User ID: " + userId);
     }
 }
 //AdminModule.java
@@ -83,7 +83,7 @@ class AdminModule {
         PreparedStatement ps = con.prepareStatement("INSERT INTO movies(title, genre, language, duration, release_date) VALUES (?, ?, ?, ?, ?)");
         ps.setString(1, title); ps.setString(2, genre); ps.setString(3, lang); ps.setInt(4, dur); ps.setString(5, date);
         ps.executeUpdate();
-        System.out.println("✅ Movie added successfully.");
+        System.out.println(" Movie added successfully.");
     }
 
     void addScreen(Connection con) throws SQLException {
@@ -119,7 +119,7 @@ class AdminModule {
                 count++;
             }
         }
-        System.out.println("✅ Screen and seats created successfully.");
+        System.out.println(" Screen and seats created successfully.");
     }
 
     void addShow(Connection con) throws SQLException {
@@ -147,7 +147,7 @@ class AdminModule {
             insertShowSeat.setInt(2, seatRs.getInt("seat_id"));
             insertShowSeat.executeUpdate();
         }
-        System.out.println("✅ Show and seats initialized.");
+        System.out.println(" Show and seats initialized.");
     }
 
     void deleteMovie(Connection con) throws SQLException {
@@ -156,7 +156,7 @@ class AdminModule {
         PreparedStatement ps = con.prepareStatement("DELETE FROM movies WHERE movie_id = ?");
         ps.setInt(1, movieId);
         int rows = ps.executeUpdate();
-        System.out.println(rows > 0 ? "✅ Movie deleted." : "❌ Movie not found.");
+        System.out.println(rows > 0 ? "Movie deleted." : "Movie not found.");
     }
 
     void deleteShow(Connection con) throws SQLException {
@@ -165,7 +165,7 @@ class AdminModule {
         PreparedStatement ps = con.prepareStatement("DELETE FROM shows WHERE show_id = ?");
         ps.setInt(1, showId);
         int rows = ps.executeUpdate();
-        System.out.println(rows > 0 ? "✅ Show deleted." : "❌ Show not found.");
+        System.out.println(rows > 0 ? " Show deleted." : " Show not found.");
     }
 
     void deleteScreen(Connection con) throws SQLException {
@@ -174,7 +174,7 @@ class AdminModule {
         PreparedStatement ps = con.prepareStatement("DELETE FROM screens WHERE screen_id = ?");
         ps.setInt(1, screenId);
         int rows = ps.executeUpdate();
-        System.out.println(rows > 0 ? "✅ Screen deleted." : "❌ Screen not found.");
+        System.out.println(rows > 0 ? " Screen deleted." : " Screen not found.");
     }
 
     void addTheater(Connection con) throws SQLException {
@@ -187,7 +187,7 @@ class AdminModule {
         ps.setString(1, name);
         ps.setString(2, location);
         int rows = ps.executeUpdate();
-        System.out.println(rows > 0 ? "✅ Theater added." : "❌ Failed to add theater.");
+        System.out.println(rows > 0 ? " Theater added." : " Failed to add theater.");
     }
 
     void viewBookings(Connection con) throws SQLException {
@@ -228,7 +228,7 @@ class UserModule {
          ps.setString(4, pass);
 
          int rows = ps.executeUpdate();
-         System.out.println(rows > 0 ? "✅ Registration successful!" : "❌ Registration failed.");
+         System.out.println(rows > 0 ? " Registration successful!" : " Registration failed.");
      } catch (SQLException e) {
          System.out.println("Registration error: " + e);
      }
@@ -249,10 +249,10 @@ class UserModule {
          ResultSet rs = ps.executeQuery();
 
          if (rs.next()) {
-             System.out.println("✅ Welcome " + rs.getString("name"));
+             System.out.println("Welcome " + rs.getString("name"));
              new BookingModule().userPanel(rs.getInt("user_id"));
          } else {
-             System.out.println("❌ Invalid credentials");
+             System.out.println(" Invalid credentials");
          }
      } catch (SQLException e) {
          System.out.println("Login error: " + e);
@@ -433,7 +433,7 @@ class SeatSelectionModule {
             }
 
             // Confirmation Output
-            System.out.println("\n🎟️ Booking Confirmed!");
+            System.out.println("\n Booking Confirmed!");
             System.out.println("Booking ID     : " + bookingId);
             System.out.println("Username       : " + username);
             System.out.println("Movie          : " + movieTitle);
@@ -470,7 +470,7 @@ class SeatSelectionModule {
             con.prepareStatement("DELETE FROM payments WHERE booking_id = " + bookingId).executeUpdate();
             con.prepareStatement("DELETE FROM bookings WHERE booking_id = " + bookingId).executeUpdate();
 
-            System.out.println("❌ Booking ID " + bookingId + " and all seats cancelled.");
+            System.out.println(" Booking ID " + bookingId + " and all seats cancelled.");
         } catch (SQLException e) {
             System.out.println("Cancellation error: " + e.getMessage());
         }
